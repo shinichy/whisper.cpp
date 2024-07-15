@@ -34,12 +34,8 @@ let package = Package(
                 "ggml/src/ggml-alloc.c",
                 "ggml/src/ggml-backend.c",
                 "ggml/src/ggml-quants.c",
-                "ggml/src/ggml-metal.m",
-                "src/coreml/whisper-decoder-impl.h",
                 "src/coreml/whisper-decoder-impl.m",
-                "src/coreml/whisper-encoder-impl.h",
                 "src/coreml/whisper-encoder-impl.m",
-                "src/coreml/whisper-encoder.h",
                 "src/coreml/whisper-encoder.mm"
             ],
             resources: [.process("ggml-metal.metal")],
@@ -47,7 +43,6 @@ let package = Package(
             cSettings: [
                 .unsafeFlags(["-Wno-shorten-64-to-32", "-O3", "-DNDEBUG"]),
                 .define("GGML_USE_ACCELERATE"),
-                .unsafeFlags(["-fno-objc-arc"]),
                 .define("WHISPER_USE_COREML"),
                 .define("WHISPER_COREML_ALLOW_FALLBACK"),
                 // NOTE: NEW_LAPACK will required iOS version 16.4+
